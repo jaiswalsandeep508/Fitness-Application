@@ -3,9 +3,9 @@ spring:
     name: User-Microservice
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/Fitness
-    username: postgres
-    password: 
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   jpa:
     hibernate:
@@ -13,4 +13,10 @@ spring:
 
 server:
   port: 8081
+
+eureka:
+  client:
+    serviceUrl:
+      default: http://localhost:8761/eureka/
+
 
