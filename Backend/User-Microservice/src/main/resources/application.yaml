@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/Fitness
     username: postgres
-    password: Anvi@1503
+    password: 
 
   jpa:
     hibernate:
