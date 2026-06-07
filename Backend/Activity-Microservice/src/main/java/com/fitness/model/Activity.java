@@ -1,41 +1,34 @@
-package com.fitness.modal;
+package com.fitness.model;
 
-import com.fitness.modal.ENUM.UserRole;
+import com.fitness.model.ENUM.ActivityType;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import java.time.LocalDateTime;
 
+
 @Entity
-@Table(name = "users")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class User {
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "activities")
+public class Activity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    private String activityId;
     private String userId;
 
-    @Email
-    @Column(nullable = false)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private String firstName;
-    private String lastName;
-
     @Enumerated(EnumType.STRING)
-    private UserRole role = UserRole.USER;
+    private ActivityType type;
+    private Integer duration;
+    private Integer caloriesBurned;
+    private LocalDateTime startTime;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

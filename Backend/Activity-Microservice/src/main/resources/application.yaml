@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: Activity-Microservice
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/Activity
+    username: postgres
+    password: 
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8082
