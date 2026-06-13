@@ -38,5 +38,10 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(user, UserResponse.class);
     }
 
+    @Override
+    public boolean validateUser(String userId) {
+        return userRepository.existsById(userId);
+    }
+
 
 }
