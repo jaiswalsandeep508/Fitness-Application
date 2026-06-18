@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: AI-Microservice
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/Fitness_AI
+    username: postgres
+    password: Anvi@1503
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8083
+
+eureka:
+  client:
+    service-url:
+      default: http://localhost:/8761/eureka/
