@@ -8,6 +8,8 @@ import com.fitness.model.Activity;
 import com.fitness.repository.ActivityRepository;
 import com.fitness.service.ActivityService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -17,6 +19,10 @@ public class ActivityServiceImpl implements ActivityService {
 
     private final ActivityRepository activityRepository;
     private final WebClient userServiceWebClient;
+    private final KafkaTemplate<String,Activity> kafkatemplate;
+
+    @Value("${kafka.topic.name}")
+    private String topicName;
 
     @Override
     public ActivityResponse trackActivity(ActivityRequest request) {
@@ -36,6 +42,15 @@ public class ActivityServiceImpl implements ActivityService {
                 .build();
 
         Activity savedActivity = activityRepository.save(activity);
+
+        try {
+            kafkatemplate.send(topicName,savedActivity.getUserId(),savedActivity);
+            System.out.println("Kafka topic called: " + topicName);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
         return ActivityResponse.builder()
                 .id(savedActivity.getActivityId())
                 .userId(savedActivity.getUserId())

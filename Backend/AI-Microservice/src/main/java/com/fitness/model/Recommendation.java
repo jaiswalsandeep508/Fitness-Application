@@ -31,5 +31,4 @@ public class Recommendation {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-
 }
