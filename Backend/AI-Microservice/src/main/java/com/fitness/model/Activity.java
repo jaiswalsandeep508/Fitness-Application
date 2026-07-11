@@ -1,37 +1,37 @@
 package com.fitness.model;
 
 import com.fitness.model.ENUM.ActivityType;
-import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 
 import java.time.LocalDateTime;
 
 
-@Entity
+//@Entity
+@Data
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "activities")
+//@Table(name = "activities")
 public class Activity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String activityId;
     private String userId;
 
-    @Enumerated(EnumType.STRING)
     private ActivityType type;
     private Integer duration;
     private Integer caloriesBurned;
     private LocalDateTime startTime;
 
-    @CreationTimestamp
+//    @CreationTimestamp
+    @CreatedDate
     private LocalDateTime createdAt;
 
-    @UpdateTimestamp
+//    @UpdateTimestamp
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 }

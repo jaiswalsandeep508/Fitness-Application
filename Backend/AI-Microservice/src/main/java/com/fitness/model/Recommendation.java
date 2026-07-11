@@ -1,23 +1,22 @@
 package com.fitness.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
+//@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "recommendation")
+//@Table(name = "recommendation")
+@Document(collection = "recommendation")
+@Data
+@Builder
 public class Recommendation {
 
     @Id
@@ -25,10 +24,11 @@ public class Recommendation {
     private String activityId;
     private String userId;
     private String recommendation;
+    private List<String> improvements;
     private List<String> suggestion;
     private List<String> safety;
 
-    @CreationTimestamp
+    @CreatedDate
     private LocalDateTime createdAt;
 
 }

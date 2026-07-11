@@ -5,10 +5,13 @@ spring:
   application:
     name: AI-Microservice
 
-  datasource:
-    url: jdbc:postgresql://localhost:5432/Fitness_AI
-    username: postgres
-    password: Anvi@1503
+#  datasource:
+#    url: ${DB_URL}
+#    username: ${DB_USERNAME}
+#    password: ${DB_PASSWORD}
+  data:
+    mongodb:
+      uri: ${AI_DB_URI}
 
   jpa:
     hibernate:
@@ -33,3 +36,6 @@ eureka:
 Kafka:
   topic:
     name: activity-events
+
+gemini_url: ${GEMINI_URL}
+gemini_key: ${GEMINI_KEY}
